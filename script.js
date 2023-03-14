@@ -3,12 +3,10 @@ const clicked = (x) => {
         if (x.target.innerText === 'X'){
             const userVal = 'X'
             const botVal = 'O'
-            console.log(userVal, botVal)
         }
         else{
             const userVal = 'O'
             const botVal = 'X'
-            console.log(userVal, botVal)
         }
     divAddDel()
     
