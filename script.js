@@ -10,6 +10,12 @@ const clicked = (x) => {
             const botVal = 'X'
             console.log(userVal, botVal)
         }
+    divAddDel()
+    
+    }
+}
+
+const divAddDel = () => {
     // hiding the main page once player makes a selection
     const deleteDiv = document.querySelector(".header")
     deleteDiv.classList.add("hidden");   
@@ -18,8 +24,6 @@ const clicked = (x) => {
     const showDiv = document.querySelector(".container")
     showDiv.classList.add("visible");   
     console.log(showDiv)
-    
-    }
 }
 
 
