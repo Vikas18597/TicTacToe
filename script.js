@@ -1,33 +1,95 @@
-const clicked = (x) => {
-    if (x.target.tagName === 'BUTTON') {
-        if (x.target.innerText === 'X'){
-            const userVal = 'X'
-            const botVal = 'O'
-            console.log(userVal, botVal)
-        }
-        else{
-            const userVal = 'O'
-            const botVal = 'X'
-            console.log(userVal, botVal)
-        }
-    divAddDel()
+// giving user values and bot values 
+let Game = {
+    userVal : '', 
+    botVal : ''
+}
+
+const clicked = (x) => {    
     
+    if (x.target.tagName != 'BUTTON') return
+
+    if (x.target.innerText === 'X'){
+        Game.userVal = 'X'
+        Game.botVal = 'O'
+        divAddDel()
     }
+    else{
+        Game.userVal = 'O'
+        Game.botVal = 'X'
+        divAddDel()
+    }
+    return Game 
+    
 }
 
 const divAddDel = () => {
     // hiding the main page once player makes a selection
     const deleteDiv = document.querySelector(".header")
     deleteDiv.classList.add("hidden");   
-    console.log(deleteDiv)
+    
     // showing the game once the player makes a selection
     const showDiv = document.querySelector(".container")
     showDiv.classList.add("visible");   
-    console.log(showDiv)
 }
-
-
-
 
 const side = document.querySelector('.side')
 side.addEventListener('click', clicked)
+
+//adding event listener to fill values 
+
+const addVal_X = (x) => {
+    if (x.target.tagName === 'BUTTON') {
+        if(x.target.innerText === ''){
+            x.target.innerText = 'X'
+        }
+    }
+} 
+const addVal_O = (x) => {
+    if (x.target.tagName === 'BUTTON') {
+        if(x.target.innerText === ''){
+            x.target.innerText = 'O'
+        }
+    }
+} 
+
+const playArea = document.querySelector('.play-area')
+
+// const fillVal = () => {
+//     for (let i = 0; i < 9 ; i++){
+//         console.log(Game.userVal === 'O')
+//         if (Game.userVal === 'O'){
+//             if(i%2 == 0){
+//                 playArea.addEventListener('click', addVal_O)
+//                 playArea.removeEventListener("mousemove", addVal_O)
+//             }else{
+//                 playArea.addEventListener('click', addVal_X)
+//                 playArea.removeEventListener("mousemove", addVal_X)
+//             }
+//         }  
+//     }    
+// }
+
+// const fillVal = () => {
+//     for (let i = 0; i < 9 ; i++){
+//         console.log(Game.userVal === 'O')
+//         if (Game.userVal === 'O'){
+//             if(i%2 == 0){
+//                 playArea.addEventListener('click', addVal_O)
+//                 playArea.removeEventListener("mousemove", addVal_O)
+//             }else{
+//                 playArea.addEventListener('click', addVal_X)
+//                 playArea.removeEventListener("mousemove", addVal_X)
+//             }
+//         } 
+//         else{
+//             if(i%2 == 0){
+//                 playArea.addEventListener('click', addVal_X)
+//                 playArea.removeEventListener("mousemove", addVal_X)
+//             } else{
+//                 playArea.addEventListener('click', addVal_O)
+//                 playArea.removeEventListener("mousemove", addVal_O)
+//             }
+//         }
+//     }
+     
+// }

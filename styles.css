@@ -47,7 +47,7 @@ border: 3px none red;
     grid-template-columns: auto auto auto;
 }
 .block {
-    display: flex;
+    /* display: flex; */
     width: 100px;
     height: 100px;
     align-items: center;
@@ -56,6 +56,7 @@ border: 3px none red;
     font-weight: bold;
     border: 3px solid black;
     transition: background 0.2s ease-in-out;
+    background-color: transparent;
   }
   
   .block:hover {
