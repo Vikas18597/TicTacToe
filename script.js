@@ -37,22 +37,52 @@ side.addEventListener('click', clicked)
 
 //adding event listener to fill values 
 
-const addVal_X = (x) => {
-    if (x.target.tagName === 'BUTTON') {
-        if(x.target.innerText === ''){
-            x.target.innerText = 'X'
-        }
-    }
-} 
-const addVal_O = (x) => {
-    if (x.target.tagName === 'BUTTON') {
-        if(x.target.innerText === ''){
+let arr = []
+
+const addVal = (x) => {
+    if(arr.length === 0){
+        if (x.target.tagName != 'BUTTON') return
+        else if((x.target.innerText === '') && (Game.userVal === 'O')){
             x.target.innerText = 'O'
+            arr.push("O")
+        }
+        else if((x.target.innerText === '') && (Game.userVal === 'X')){
+            x.target.innerText = 'X'
+            arr.push("X")
+        }
+    
+    }
+    else{
+        if (x.target.tagName != 'BUTTON') return
+        else if((arr[arr.length -1] === "O") && (x.target.innerText === '')){
+            x.target.innerText = 'X'
+            arr.push("X")
+        }
+        else if((arr[arr.length -1] === "X") && (x.target.innerText === '')){
+            x.target.innerText = 'O'
+            arr.push("O")
         }
     }
+    
+    console.log(arr)
 } 
 
+// playing the game by selecting where to enter value 
 const playArea = document.querySelector('.play-area')
+playArea.addEventListener('click', addVal)
+
+
+
+
+// const addVal_O = (x) => {
+//     if (x.target.tagName === 'BUTTON') {
+//         if(x.target.innerText === ''){
+//             x.target.innerText = 'O'
+//         }
+//     }
+// } 
+
+
 
 // const fillVal = () => {
 //     for (let i = 0; i < 9 ; i++){
