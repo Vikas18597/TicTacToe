@@ -35,91 +35,82 @@ const divAddDel = () => {
 const side = document.querySelector('.side')
 side.addEventListener('click', clicked)
 
-//adding event listener to fill values 
 
-let arr = []
+// saving previous value  -- will change with entries 
+let prev_val = ''
 
+// function to identify winner 
+let entry = [...Array(9)]
+const winner = (val) => {
+    return ((entry[0] === val) && (entry[1] === val) && (entry[2] === val)) ? val + " wins" 
+        : ((entry[3] === val) && (entry[4] === val) && (entry[5] === val)) ? val + " wins"
+        : ((entry[6] === val) && (entry[7] === val) && (entry[8] === val)) ? val + " wins"
+        : ((entry[0] === val) && (entry[3] === val) && (entry[6] === val)) ? val + " wins"
+        : ((entry[1] === val) && (entry[4] === val) && (entry[7] === val)) ? val + " wins"
+        : ((entry[2] === val) && (entry[5] === val) && (entry[8] === val)) ? val + " wins"
+        : ((entry[0] === val) && (entry[4] === val) && (entry[8] === val)) ? val + " wins"
+        : ((entry[2] === val) && (entry[4] === val) && (entry[6] === val)) ? val + " wins"
+        : 'Continue Playing'
+}
+
+
+// changing the status of the game 
+let state = document.getElementById("game-status")
+
+// function to reset 
+const reset = () => {
+    // entry = [...Array(9)]
+    // let val = document.getElementsByClassName("block")
+    // val = [...val]
+    // val.forEach(element => {
+    //     element.innerHTML = ""
+    // });
+    // state.innerHTML = 'Start the Game'
+
+    // reloading page -- more simple solution
+    window.location.reload() 
+    
+}
+// addVal -- adds text to the maze 
 const addVal = (x) => {
-    if(arr.length === 0){
-        if (x.target.tagName != 'BUTTON') return
-        else if((x.target.innerText === '') && (Game.userVal === 'O')){
+    if (x.target.tagName != 'BUTTON') return
+    else if(prev_val === ''){
+        if(x.target.innerText != '') return
+        else if(Game.userVal === 'O'){
             x.target.innerText = 'O'
-            arr.push("O")
+            entry[x.target.getAttribute('id')] = 'O'
+            prev_val = 'O' // updating previous value 
+            state.innerHTML = 'Continue Playing'
         }
-        else if((x.target.innerText === '') && (Game.userVal === 'X')){
+        else if(Game.userVal === 'X'){
             x.target.innerText = 'X'
-            arr.push("X")
+            entry[x.target.getAttribute('id')] = 'X'
+            prev_val = 'X'      
+            state.innerHTML = 'Continue Playing'  
         }
-    
     }
+
     else{
-        if (x.target.tagName != 'BUTTON') return
-        else if((arr[arr.length -1] === "O") && (x.target.innerText === '')){
+        if ((x.target.innerText != '')) return
+        else if(prev_val === "O"){
             x.target.innerText = 'X'
-            arr.push("X")
+            entry[x.target.getAttribute('id')] = 'X'
+            prev_val = "X" // updating previous value to X from O 
+            state.innerHTML = winner("X") 
+            
         }
-        else if((arr[arr.length -1] === "X") && (x.target.innerText === '')){
+        else if(prev_val === "X"){
             x.target.innerText = 'O'
-            arr.push("O")
+            entry[x.target.getAttribute('id')] = 'O'
+            prev_val = "O"  
+            state.innerHTML = winner("O")
+            
         }
     }
     
-    console.log(arr)
+    // console.log(entry)
 } 
 
-// playing the game by selecting where to enter value 
+//adding event listener to fill values 
 const playArea = document.querySelector('.play-area')
 playArea.addEventListener('click', addVal)
-
-
-
-
-// const addVal_O = (x) => {
-//     if (x.target.tagName === 'BUTTON') {
-//         if(x.target.innerText === ''){
-//             x.target.innerText = 'O'
-//         }
-//     }
-// } 
-
-
-
-// const fillVal = () => {
-//     for (let i = 0; i < 9 ; i++){
-//         console.log(Game.userVal === 'O')
-//         if (Game.userVal === 'O'){
-//             if(i%2 == 0){
-//                 playArea.addEventListener('click', addVal_O)
-//                 playArea.removeEventListener("mousemove", addVal_O)
-//             }else{
-//                 playArea.addEventListener('click', addVal_X)
-//                 playArea.removeEventListener("mousemove", addVal_X)
-//             }
-//         }  
-//     }    
-// }
-
-// const fillVal = () => {
-//     for (let i = 0; i < 9 ; i++){
-//         console.log(Game.userVal === 'O')
-//         if (Game.userVal === 'O'){
-//             if(i%2 == 0){
-//                 playArea.addEventListener('click', addVal_O)
-//                 playArea.removeEventListener("mousemove", addVal_O)
-//             }else{
-//                 playArea.addEventListener('click', addVal_X)
-//                 playArea.removeEventListener("mousemove", addVal_X)
-//             }
-//         } 
-//         else{
-//             if(i%2 == 0){
-//                 playArea.addEventListener('click', addVal_X)
-//                 playArea.removeEventListener("mousemove", addVal_X)
-//             } else{
-//                 playArea.addEventListener('click', addVal_O)
-//                 playArea.removeEventListener("mousemove", addVal_O)
-//             }
-//         }
-//     }
-     
-// }
