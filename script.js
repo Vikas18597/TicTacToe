@@ -59,17 +59,7 @@ let state = document.getElementById("game-status")
 
 // function to reset 
 const reset = () => {
-    // entry = [...Array(9)]
-    // let val = document.getElementsByClassName("block")
-    // val = [...val]
-    // val.forEach(element => {
-    //     element.innerHTML = ""
-    // });
-    // state.innerHTML = 'Start the Game'
-
-    // reloading page -- more simple solution
     window.location.reload() 
-    
 }
 // addVal -- adds text to the maze 
 const addVal = (x) => {
@@ -97,16 +87,20 @@ const addVal = (x) => {
             entry[x.target.getAttribute('id')] = 'X'
             prev_val = "X" // updating previous value to X from O 
             state.innerHTML = winner("X") 
-            
         }
         else if(prev_val === "X"){
             x.target.innerText = 'O'
             entry[x.target.getAttribute('id')] = 'O'
             prev_val = "O"  
-            state.innerHTML = winner("O")
-            
+            state.innerHTML = winner("O")    
         }
+        
+        // checking if its a tie -- checking for non undefined values and when no one has won 
+        (((entry.filter(element => {
+            return element !== undefined
+        })).length === 9) && (state.innerHTML == 'Continue Playing') ) ? state.innerHTML = "Its a tie" : null 
     }
+
     
     // console.log(entry)
 } 
