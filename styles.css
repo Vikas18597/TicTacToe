@@ -46,7 +46,7 @@ border: 3px none red;
     height: 300px;
     grid-template-columns: auto auto auto;
 }
-.block {
+.block{
     /* display: flex; */
     width: 100px;
     height: 100px;
@@ -59,10 +59,10 @@ border: 3px none red;
     background-color: transparent;
   }
   
-  .block:hover {
-    cursor: pointer;
-    background: rgb(236, 150, 150);
-  }
+.block:hover {
+  cursor: pointer;
+  background: rgb(236, 150, 150);
+}
 
 #block_0,
 #block_1,
@@ -88,4 +88,11 @@ border: 3px none red;
   border-right: none;
 }
 
-  
+.restart, .restart:hover{
+  cursor: pointer;
+  margin-top: 50%;
+  background-color: transparent;
+  border: none;
+  font-size: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

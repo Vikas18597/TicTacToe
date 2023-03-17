@@ -57,10 +57,6 @@ const winner = (val) => {
 // changing the status of the game 
 let state = document.getElementById("game-status")
 
-// function to reset 
-const reset = () => {
-    window.location.reload() 
-}
 // addVal -- adds text to the maze 
 const addVal = (x) => {
     if (x.target.tagName != 'BUTTON') return
@@ -94,7 +90,7 @@ const addVal = (x) => {
             prev_val = "O"  
             state.innerHTML = winner("O")    
         }
-        
+
         // checking if its a tie -- checking for non undefined values and when no one has won 
         (((entry.filter(element => {
             return element !== undefined
@@ -108,3 +104,11 @@ const addVal = (x) => {
 //adding event listener to fill values 
 const playArea = document.querySelector('.play-area')
 playArea.addEventListener('click', addVal)
+
+// function to reset 
+const reset = () => {
+    window.location.reload() 
+}
+//restart
+const restart = document.querySelector('.restart')
+restart.addEventListener('click', reset)
